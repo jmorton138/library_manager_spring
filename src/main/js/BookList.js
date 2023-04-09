@@ -2,15 +2,11 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 import Book from './Book';
 
-class BookList extends React.Component {
-//    componentDidMount() {
-//        console.log("test");
-//    }
-    render() {
-        const books = this.props.books.map(book => {
-              console.log(book);
-              return <Book book={book}/>
-           });
+export default function BookList(props) {
+    const books = props.books.map(book => {
+          console.log(book);
+          return <Book book={book}/>
+       });
 
         return (
             <table>
@@ -23,8 +19,6 @@ class BookList extends React.Component {
                 </tbody>
             </table>
         )
-    }
+
 
 }
-
-export default BookList;

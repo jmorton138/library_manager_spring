@@ -3,6 +3,8 @@ const ReactDOM = require('react-dom');
 const client = require('./client');
 import BookList from './BookList';
 import AddBook from './AddBook';
+import UpdateBook from './UpdateBook';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
@@ -47,10 +49,18 @@ class App extends React.Component {
           return <div>Loading...</div>;
         } else {
         return (
-            <div>
-                <BookList books={books} />
-                <AddBook/>
-                </div>
+                <Router>
+                    <Switch>
+                        <Route path='/create'>
+                            <AddBook />
+                        </Route>
+                         <Route path='/read'>
+                            <BookList books={books}/>
+                         </Route>
+                         <Route path='/books/:title' component={UpdateBook}/>
+                    </Switch>
+                </Router>
+
             )
         }
     }
