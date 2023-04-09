@@ -60,6 +60,9 @@ chrome-user-data
 *.swp
 *.swo
 
+/node/
+src/main/resources/static/built/
+
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build
 packages/react-devtools-extensions/chrome/*.crx
