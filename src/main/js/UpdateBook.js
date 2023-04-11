@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 export default function UpdateBook() {
     const params = useParams()
     const [title, setTitle] = useState(params.title);
     const [category, setCategory] = useState('');
+    let history = useHistory();
+
     const updateData = (e) => {
         e.preventDefault();
         console.log("Update clicked");
@@ -19,10 +21,10 @@ export default function UpdateBook() {
          })
          .then((response) => response.json())
             .then((data) => {
-              return data;
+                history.push('/read');
             })
             .catch((error) => {
-              console.error(error);
+              console.log(error);
             });
 
 

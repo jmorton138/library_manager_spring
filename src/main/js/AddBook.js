@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 export default function AddBook() {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
-
+    let history = useHistory();
 
     const postData = (e) => {
         e.preventDefault()
@@ -18,13 +19,11 @@ export default function AddBook() {
          })
          .then((response) => response.json())
             .then((data) => {
-              return data;
+                history.push('/read');
             })
             .catch((error) => {
-              console.error(error);
+              console.log(error);
             });
-         setTitle('');
-         setCategory('');
         }
     return (
         <form onSubmit={postData} method="post">
