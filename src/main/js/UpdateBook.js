@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import {Form, FormGroup, Button, Input, Label, Container} from 'reactstrap';
 
 export default function UpdateBook() {
     const params = useParams()
@@ -30,14 +31,24 @@ export default function UpdateBook() {
 
     }
     return (
-    <div className="container">
+    <Container className='mt-5'>
         <h2>Update Book</h2>
-        <form onSubmit={updateData} method="post">
-            <input type="text" placeholder="Title" name="title" value={title} onChange={(e) => setTitle(e.target.value)}></input>
-            <input type="text" placeholder="category" name="category" onChange={(e) => setCategory(e.target.value)}></input>
-            <button type="submit" >Update Book</button>
-        </form>
-    </div>
+        <Form onSubmit={updateData} method="post">
+            <FormGroup className='mt-3'>
+                <Label for="add-book-title-input">
+                  Title
+                </Label>
+                <Input id="add-book-title-input" type="text" placeholder="Title" className='mt-2' name="title" value={title} onChange={(e) => setTitle(e.target.value)}></Input>
+            </FormGroup>
+            <FormGroup className='mt-3'>
+                <Label for="add-book-category-input">
+                  Title
+                </Label>
+                <Input id="add-book-category-input" type="text" placeholder="category" className='mt-2' name="category" onChange={(e) => setCategory(e.target.value)}></Input>
+            </FormGroup>
+            <Button className='mt-3' type="submit" >Update Book</Button>
+        </Form>
+    </Container>
     )
 
 }

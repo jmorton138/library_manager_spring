@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 const ReactDOM = require('react-dom');
 import Book from './Book';
+import {Table, Container} from 'reactstrap';
 
 export default function BookList() {
     const [error, setError] = useState('');
@@ -41,15 +42,20 @@ export default function BookList() {
        }
 
         return (
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                    </tr>
-                    {bookComponents}
-                </tbody>
-            </table>
+            <Container className='mt-5'>
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookComponents}
+                    </tbody>
+                </Table>
+            </Container>
         )
 
 

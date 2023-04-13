@@ -4,6 +4,7 @@ const client = require('./client');
 import BookList from './BookList';
 import AddBook from './AddBook';
 import UpdateBook from './UpdateBook';
+import AppNavBar from './AppNavBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function App() {
@@ -19,6 +20,8 @@ export default function App() {
 //          return <div>Loading...</div>;
 //        } else {
         return (
+                <div>
+                <AppNavBar/>
                 <Router>
                     <Switch>
                         <Route path='/create'>
@@ -30,12 +33,11 @@ export default function App() {
                          <Route path='/books/:title' component={UpdateBook}/>
                     </Switch>
                 </Router>
+                </div>
 
             )
 //        }
 }
-
-
 
 ReactDOM.render(
 	<App />,
