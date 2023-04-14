@@ -10,11 +10,12 @@ export default function Book(props) {
 
         return (
         <tr>
+            <td>{props.book.id}</td>
             <td>{props.book.title}</td>
             <td>{props.book.category}</td>
             <td>
                 <ButtonGroup>
-                    <Button size="sm" color="primary" tag={Link} to={"/books/" + props.book.title}>Edit</Button>
+                    <Button size="sm" color="primary" tag={Link} to={"/books/" + props.book.id}>Edit</Button>
                     <Button size="sm" color="danger" onClick={props.handleDelete}>Delete</Button>
 
                 </ButtonGroup>

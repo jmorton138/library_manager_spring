@@ -24,15 +24,15 @@ public class BookService {
         return bookDao.addBook(book);
     }
 
-    public Book getBookById(String title) {
-        return bookDao.getBookById(title);
+    public Book getBookById(Integer id) {
+        return bookDao.getBookById(id);
     }
 
-    public int updateBookById(String title, Book book) {
-        return bookDao.updateBookById(title, book);
+    public int updateBookById(Integer id, Book book) {
+        return bookDao.updateBookById(id, book);
     }
 
-    public int deleteBookById(String title) {
-        return bookDao.deleteBookById(title);
+    public int deleteBookById(Integer id) {
+        return bookDao.deleteBookById(id);
     }
 }

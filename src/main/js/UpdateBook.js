@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import {Form, FormGroup, Button, Input, Label, Container} from 'reactstrap';
 
 export default function UpdateBook() {
     const params = useParams()
-    const [title, setTitle] = useState(params.title);
+    const [id, setID] = useState(params.id);
     const [category, setCategory] = useState('');
+    const [title, setTitle] = useState('');
     let history = useHistory();
 
+    useEffect(() => {
+        fetch(id)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              setTitle(result.title);
+              setCategory(result.category);
+              //setIsLoaded(true);
+              console.log(result);
+            },
+            (error) => {
+                //setIsLoaded(true);
+                //setError(error);
+            }
+          )
+        }, []);
     const updateData = (e) => {
         e.preventDefault();
         console.log("Update clicked");
-        console.log('props' + params.title);
-        fetch(`${title}`, {
+        console.log('props' + params);
+        fetch(`${id}`, {
           method: 'put',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -44,7 +61,7 @@ export default function UpdateBook() {
                 <Label for="add-book-category-input">
                   Title
                 </Label>
-                <Input id="add-book-category-input" type="text" placeholder="category" className='mt-2' name="category" onChange={(e) => setCategory(e.target.value)}></Input>
+                <Input id="add-book-category-input" type="text" placeholder="category" className='mt-2' name="category" value={category} onChange={(e) => setCategory(e.target.value)}></Input>
             </FormGroup>
             <Button className='mt-3' type="submit" >Update Book</Button>
         </Form>

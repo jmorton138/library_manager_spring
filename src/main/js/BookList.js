@@ -15,6 +15,7 @@ export default function BookList() {
             (result) => {
               setBooks(result);
               setIsLoaded(true);
+              console.log(result);
             },
             (error) => {
                 setIsLoaded(true);
@@ -24,21 +25,22 @@ export default function BookList() {
         }, []);
 
        const bookComponents = books.map(book => {
-          return <Book book={book} handleDelete={() => deleteBook(book.title)} />
+          const bookKey = 'book-' + book.id;
+          return <Book book={book} key={bookKey} handleDelete={() => deleteBook(book.id)} />
        });
 
-      const deleteBook = (title) => {
-           fetch(`/books/${title}`, {
+      const deleteBook = (id) => {
+           fetch(`/books/${id}`, {
              method: 'delete',
              headers: { 'Content-Type': 'application/json' },
             })
            .then(() => {
-             console.log(`${title} deleted`);
+             console.log(`${id} deleted`);
            })
            .catch((error) => {
              console.error(error);
            });
-            setBooks(books => books.filter((book) => book.title !== title));
+            setBooks(books => books.filter((book) => book.id !== id));
        }
 
         return (
@@ -46,6 +48,7 @@ export default function BookList() {
                 <Table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Category</th>
                             <th>Actions</th>

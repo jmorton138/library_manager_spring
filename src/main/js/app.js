@@ -30,7 +30,7 @@ export default function App() {
                          <Route path='/read'>
                             <BookList />
                          </Route>
-                         <Route path='/books/:title' component={UpdateBook}/>
+                         <Route path='/books/:id' component={UpdateBook}/>
                     </Switch>
                 </Router>
                 </div>

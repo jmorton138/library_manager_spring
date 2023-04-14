@@ -7,10 +7,10 @@ import java.util.List;
 public interface BookDao {
     public List<Book> getAllBooks();
     public int addBook(Book book);
-    public Book getBookById(String title);
+    public Book getBookById(Integer id);
 
-    int deleteBookById(String title);
+    int deleteBookById(Integer id);
 
 
-    int updateBookById(String title, Book book);
+    int updateBookById(Integer id, Book book);
 }
