@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 const ReactDOM = require("react-dom");
-const client = require("./client");
 import BookList from "./BookList";
 import AddBook from "./AddBook";
 import UpdateBook from "./UpdateBook";
