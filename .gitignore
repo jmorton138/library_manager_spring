@@ -62,6 +62,7 @@ chrome-user-data
 
 /node/
 src/main/resources/static/built/
+src/main/js/build/
 
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build

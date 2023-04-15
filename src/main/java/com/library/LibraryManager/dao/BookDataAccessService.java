@@ -26,7 +26,7 @@ public class BookDataAccessService implements BookDao {
         return jdbcTemplate.query(sql, new RowMapper<Book>() {
             @Override
             public Book mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-                Book book = new Book(resultSet.getString(1), resultSet.getString(2));
+                Book book = new Book(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
                 return book;
             }
         });
@@ -37,30 +37,30 @@ public class BookDataAccessService implements BookDao {
     }
 
     @Override
-    public Book getBookById(String title) {
-        String sql = "SELECT * FROM book WHERE title=?";
+    public Book getBookById(Integer id) {
+        String sql = "SELECT * FROM book WHERE id=?";
         return jdbcTemplate.queryForObject(
                 sql,
-                new Object[]{title},
+                new Object[]{id},
                 new RowMapper<Book>() {
                     @Override
                     public Book mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-                        Book book = new Book(resultSet.getString(1), resultSet.getString(2));
+                        Book book = new Book(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
                         return book;                    }
                 }
 
         );
     }
     @Override
-    public int deleteBookById(String title) {
-        String sql = "DELETE FROM book WHERE title=?";
-        return jdbcTemplate.update(sql, title);
+    public int deleteBookById(Integer id) {
+        String sql = "DELETE FROM book WHERE id=?";
+        return jdbcTemplate.update(sql, id);
     }
 
     @Override
-    public int updateBookById(String title, Book book) {
-        String sql = "UPDATE book SET category = ? WHERE title = ?";
-        return jdbcTemplate.update(sql, book.getCategory(), title);
+    public int updateBookById(Integer id, Book book) {
+        String sql = "UPDATE book SET category = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, book.getCategory(), id);
     }
 
 
